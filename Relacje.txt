@@ -1,0 +1,136 @@
+#include <iostream>
+using namespace std;
+
+#define ROZMIAR 100
+
+
+int zwrotna(int R[ROZMIAR][ROZMIAR],int n, int &spacja)
+{
+    for (int i=0; i<n; i++)
+    if (R[i][i] == 0) return 0;
+    cout<<"Z";
+    spacja=1;
+    return 1;
+}
+
+int przeciwzwrotna(int R[ROZMIAR][ROZMIAR],int n, int &spacja)
+{
+    for (int i=0; i<n; i++)
+        if (R[i][i]) return 0;
+    if (spacja) cout<<" ";
+    spacja=1;
+    cout<<"PZ";
+    return 1;
+}
+
+int symetryczna(int R[ROZMIAR][ROZMIAR],int n, int &spacja)
+{
+    for (int i=0; i<n-1; i++)
+    {
+        for (int j=i; j<n; j++)
+            if (R[i][j] != R[j][i]) return 0;
+    }
+    if (spacja) cout<<" ";
+    spacja=1;
+    cout<<"S";
+    return 1;
+}
+
+int antysymetryczna(int R[ROZMIAR][ROZMIAR],int n, int &spacja)
+{
+    for (int i=0; i<n-1; i++)
+        for (int j=i; j<n; j++)
+            if (R[i][j] && R[j][i])
+                if (i !=j)
+                    return 0;
+    if (spacja) cout<<" ";
+    cout<<"AS";
+    spacja=1;
+    return 1;
+}
+
+
+int przechodnia(int R[ROZMIAR][ROZMIAR], int n, int &spacja)
+{
+    int i,j,k;
+    int B;
+    for (i=0; i<n; i++)
+        for (j=i; j<n; j++)
+        {  B = 0;
+            for (k=0; (!B) && (k<n); k++) B = R[i][k] && R[k][j];
+            if (R[i][j] < B) return 0;
+        }
+    if (spacja) cout<<" ";
+    spacja=1;
+    cout<<"P";
+    return 1;
+}
+
+int spojna(int R[ROZMIAR][ROZMIAR],int n, int &spacja)
+{
+    int i,j;
+    for (i=0; i<n-1; i++)
+            for (j=i; j<n; j++)
+                     if (!(R[i][j] || R[j][i])) return 0;
+    if (spacja) cout<<" ";
+    spacja=1;
+    cout<<"SP";
+    return 1;
+}
+
+
+
+
+
+
+int main() {
+    int wymiar=0,x,y;
+    int macierz_relacj[ROZMIAR][ROZMIAR];
+    int czyspacja=0;
+    int odpowiedzi[6]={0,0,0,0,0,0};
+
+
+    for (int i=0;i<ROZMIAR;i++)
+        for (int j=0;j<ROZMIAR;j++)
+            macierz_relacj[i][j]=0;
+
+    while (cin>>x>>y)
+    {
+       macierz_relacj[x-1][y-1]=1;
+       if (wymiar<x) wymiar=x;
+       if (wymiar<y) wymiar=y;
+    }
+
+    odpowiedzi[0]=zwrotna(macierz_relacj,wymiar,czyspacja);
+    odpowiedzi[1]=przeciwzwrotna(macierz_relacj,wymiar,czyspacja);
+    odpowiedzi[2]=symetryczna(macierz_relacj,wymiar,czyspacja);
+    odpowiedzi[3]=antysymetryczna(macierz_relacj,wymiar,czyspacja);
+    odpowiedzi[4]=przechodnia(macierz_relacj,wymiar,czyspacja);
+    odpowiedzi[5]=spojna(macierz_relacj,wymiar,czyspacja);
+    if (!czyspacja)
+    {
+        cout<<"X";
+        return 0;
+    }
+    cout<<endl;
+    czyspacja=0;
+
+    if (odpowiedzi[0]+odpowiedzi[2]+odpowiedzi[4]==3)
+    {
+            cout<<"RR";
+            czyspacja=1;
+    }
+    if (odpowiedzi[0]+odpowiedzi[3]+odpowiedzi[4]==3)
+    {
+        if (czyspacja) cout<<" ";
+        czyspacja=1;
+        if (odpowiedzi[5]==1)
+            cout<<"RPL";
+        else
+            cout<<"RPCz";
+    }
+    if (!czyspacja)
+        cout<<"X";
+
+    return 0;
+}

@@ -1,0 +1,25 @@
+using System;
+
+
+namespace Samolot
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int n1, n2, k1, k2;
+            string xx;
+            xx = Console.ReadLine();
+            string[] dane = xx.Split(' ');
+            n1 = int.Parse(dane[0]);
+            k1 = int.Parse(dane[1]);
+            n2 = int.Parse(dane[2]);
+            k2 = int.Parse(dane[3]);
+
+            Console.WriteLine((n1*k1)+(n2*k2));
+
+
+            Console.ReadLine();
+        }
+    }
+}

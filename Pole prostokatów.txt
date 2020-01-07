@@ -1,0 +1,122 @@
+using System;
+
+
+namespace ConsoleApplication8
+{
+    class Prostokat
+    {
+        public int x1;
+        public int x2;
+        public int y1;
+        public int y2;
+        public Prostokat(string q, string w, string e, string r)
+        {
+            x1 = int.Parse(q);
+            y1 = int.Parse(w);
+            x2 = int.Parse(e);
+            y2 = int.Parse(r);
+        }
+        public void wspolne_pole(Prostokat o)
+        {
+            int z=((y2-y1)*(x2-x1))+((o.y2-o.y1)*(o.x2-o.x1));	
+
+if (x1<o.x1 && o.x1<=x2 && x2<=o.x2 && o.y1<=y1 && y1<=o.y2 && o.y2<=y2)
+{
+Console.WriteLine(z-((o.y2-y1)*(x2-o.x1)));
+}
+else if (o.x1<=x1 && x1<=o.x2 && o.x2<=x2 && y1<=o.y1 && o.y1<=y2 && y2<=o.y2)
+{
+Console.WriteLine(z-((y2-o.y1)*(o.x2-x1)));
+}
+else if (y1<=o.y1 && o.y1<=y2 && y2<=o.y2 && x1<=o.x1 && o.x1<=x2 && x2<=o.x2)
+{
+Console.WriteLine(z-((y2-o.y1)*(x2-o.x1)));	
+}
+else if(o.x1<=x1 && x1<=o.x2 && o.x2<=x2 && o.y1<=y1 && y1<=o.y2 && o.y2<=y2)
+{
+Console.WriteLine(z-((o.y2-y1)*(o.x2-x1)));	
+}
+else if (y1<=o.y1 && o.y1<=y2 && y2<=o.y2 && o.x1<=x1 && x1<=x2 && x2<=o.x2)
+{
+Console.WriteLine(z-((y2-o.y1)*(x2-x1)));	
+}
+else if(x1<=o.x1 && o.x1<=o.x2 && o.x2<=x2 && o.y1<=y1 && y1<=o.y2 && o.y2<=y2)
+{
+Console.WriteLine(z-((o.y2-y1)*(o.x2-o.x1)));
+}
+else if (y1<=o.y1 && o.y1<=o.y2 && o.y2<=y2 && o.x1<=x1 && x1<=o.x2 && o.x2<=x2)
+{
+Console.WriteLine(z-((o.y2-o.y1)*(o.x2-x1)));	
+}
+else if (o.y1<=y1 && y1<=y2 && y2<=o.y2 && x1<=o.x1 && o.x1<=x2 && x2<=o.x2)
+{
+Console.WriteLine(z-((y2-y1)*(x2-o.x1)));	
+}
+else if (y1<=o.y1 && o.y1<=o.y2 && o.y2<=y2 && x1<=o.x1 && o.x1<=x2 && x2<=o.x2)
+{
+Console.WriteLine(z-((o.y2-o.y1)*(o.x1-x2)));	
+}
+else if (o.y1<=y1 && y1<=y2 && y2<=o.y2 && o.x1<=x1 && x1<=o.x2 && o.x2<=x2)
+{
+Console.WriteLine(z-((y2-y1)*(o.x2-x1)));	
+}
+else if(o.x1<=x1 && x1<=x2 && x2<=o.x2 && o.y1<=y1 && y1<=o.y2 && o.y2<=y2)
+{
+Console.WriteLine(z-((o.y2-y1)*(x2-x1)));	
+}
+else if(x1<=o.x1 && o.x1<=o.x2 && o.x2<=x2 && y1<=o.y1 && o.y1<=y2 && y2<=o.y2)
+{
+Console.WriteLine(z-((y2-o.y1)*(o.x2-o.x1)));	
+}
+else if(o.x1<=x1 && x2<=o.x2 && o.y1<=y1 && y2<=o.y2)
+{
+Console.WriteLine(((o.y2-o.y1)*(o.x2-o.x1)));	
+}
+else if(x1<=o.x1 && o.x2<=x2 && y1<=o.y1 && o.y2<=y2)
+{
+Console.WriteLine(((y2-y1)*(x2-x1)));	
+}
+else if (o.y1<y1 && y1<y2 && y2<o.y2 && x1<o.x1 && o.x1<o.x2 && o.x2<=x2)
+{
+Console.WriteLine(z-((y2-y1)*(o.x2-o.x1)));	
+}
+else if (y1<o.y1 && o.y1<o.y2 && o.y2<y2 && o.x1<x1 && x1<x2 && x2<=o.x2)
+{
+Console.WriteLine(z-((o.y2-o.y1)*(x2-x1)));	
+}
+else
+Console.WriteLine(z);
+}
+
+    
+
+        }
+    
+    
+    
+    
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string a;
+            a = Console.ReadLine();
+
+            string[] dane = a.Split(' ');
+
+            Prostokat A = new Prostokat(dane[0], dane[1], dane[2], dane[3]);
+
+            a = Console.ReadLine();
+
+            string[] dane2 = a.Split(' ');
+
+            Prostokat B = new Prostokat(dane2[0], dane2[1], dane2[2], dane2[3]);
+
+
+            A.wspolne_pole(B);
+
+            Console.ReadLine();
+
+        }
+    }
+}

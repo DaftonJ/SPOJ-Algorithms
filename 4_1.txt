@@ -1,0 +1,60 @@
+##include <iostream>
+#include <iomanip>
+using namespace std;
+ 
+int main() {
+ 
+    int m, n;
+    cin >> n;
+    cin >> m;
+ 
+    double** matrix = new double*[m];
+    for (int i = 0; i < m; ++i)
+    {
+        matrix[i] = new double[n + 1];
+    }
+ 
+    double** transpositeMatrix = new double*[n + 1];
+    for (int i = 0; i < n + 1; ++i)
+    {
+        transpositeMatrix[i] = new double[m];
+    }
+ 
+    double *resultMatrix = new double[n];
+    for (int i = 0; i < n; ++i)
+    {
+        resultMatrix[i] = 0;
+    }
+ 
+ 
+    for (int i = 0; i < m; ++i)
+    {
+        for (int j = 0; j < n + 1; ++j)
+        {
+            cin >> matrix[i][j];
+        }
+    }
+ 
+    for (int i = 0; i < m; ++i)
+    {
+        for (int j = 0; j < n; ++j)
+        {
+            transpositeMatrix[j][i] = matrix[i][j];
+        }
+    }
+ 
+    for (int i = 0; i < n; ++i)
+    {
+        for (int j = 0; j < m; ++j)
+        {
+            resultMatrix[i] += transpositeMatrix[i][j] * matrix[j][n];
+        }
+    }
+ 
+    for (int i = 0; i < n; ++i)
+    {
+        printf("%.7g ", resultMatrix[i]);
+    }
+ 
+    return 0;
+}

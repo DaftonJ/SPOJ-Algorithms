@@ -1,0 +1,49 @@
+using System;
+
+
+namespace ConsoleApplication8
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[,] tab;
+            tab = new string[200, 200];
+
+            string z;
+
+            int a, b;
+
+            z = Console.ReadLine();
+
+            string[] dane = z.Split(' ');
+
+            a = int.Parse(dane[0]);
+            b = int.Parse(dane[1]);
+
+            for (int i = 0;i<a;i++)
+            {
+                z = Console.ReadLine();
+                string[] liczby = z.Split(' ');
+
+                for (int j=0;j<b;j++)
+                {
+                    tab[i, j] = liczby[j];
+                }
+            }
+
+
+            for (int j=0;j<b;j++)
+            {
+                for(int i=0;i<a;i++)
+                {
+                    Console.Write(tab[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+
+            Console.ReadLine();
+
+        }
+    }
+}

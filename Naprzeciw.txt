@@ -1,0 +1,41 @@
+using System;
+
+
+namespace Naprzeciw
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int n, p, zestaw;
+            string x;
+            zestaw = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < zestaw;i++ )
+            {
+
+                x = Console.ReadLine();
+                string[] dane = x.Split(' ');
+                n = int.Parse(dane[0]);
+                p = int.Parse(dane[1]);
+
+
+                if(n%2!=0)
+                {
+                    Console.WriteLine("BRAK");
+                }
+                else if ((n % 2 == 0) && (((n / 2) + p )>n))
+                {
+                    Console.WriteLine(((n / 2) + p)-n);
+                }
+                else
+                {
+                    Console.WriteLine((n/2)+p);
+                }
+                    
+
+            }
+                Console.ReadLine();
+        }
+    }
+}
